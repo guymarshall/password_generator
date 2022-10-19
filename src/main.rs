@@ -1,5 +1,18 @@
+mod user_input;
+
+fn generate_password(length: i32) -> String {
+    let password: String = String::from("");
+    // do push in for loop
+    return password;
+}
+
 fn main() {
-    println!("Hello, world!");
+    let number_of_characters: i32 = user_input::get_user_input("Enter number of characters: ");
+    println!("Generating random password...");
+    // generate password here
+
+    println!("Saving password to file...");
+    // save password here
 }
 
 /*
