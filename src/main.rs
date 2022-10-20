@@ -13,7 +13,7 @@ fn generate_password(length: i32) -> String {
         if percentage_progress % 1.0 == 0.0 {
             println!("{}% complete.", percentage_progress);
         }
-        let random_index: usize = rand::thread_rng().gen_range(0..=characters.len());
+        let random_index: usize = rand::thread_rng().gen_range(0..characters.len() - 1);
         password.push(characters[random_index]);
         counter += 1;
     }
@@ -24,22 +24,16 @@ fn generate_password(length: i32) -> String {
 fn main() {
     let number_of_characters: i32 = user_input::get_user_input("Enter number of characters: ");
     println!("Generating random password...");
-    // generate password here
+    let password: String = generate_password(number_of_characters);
 
     println!("Saving password to file...");
     // save password here
+    println!("Password: {}", password);
 }
 
 /*
 int main(int argc, char const *argv[])
 {
-    std::cout << "Enter number of characters: ";
-    int numberOfCharacters;
-    std::cin >> numberOfCharacters;
-
-    std::cout << "Generating random password..." << std::endl;
-    std::string password = generatePassword(numberOfCharacters);
-
     std::cout << "Saving password to file..." << std::endl;
     std::ofstream out("password.txt");
 
