@@ -1,6 +1,7 @@
 mod user_input;
 
 use rand::Rng;
+use std::fs;
 
 fn generate_password(length: i32) -> String {
     let characters: [char; 91] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\'', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', '{', ']', '}', ';', ':', '"', '@', '#', '~', ',', '<', '.', '>', '/', '?'];
@@ -27,27 +28,5 @@ fn main() {
     let password: String = generate_password(number_of_characters);
 
     println!("Saving password to file...");
-    // save password here
-    println!("Password: {}", password);
+    fs::write("password.txt", password).expect("Unable to write file.");
 }
-
-/*
-int main(int argc, char const *argv[])
-{
-    std::cout << "Saving password to file..." << std::endl;
-    std::ofstream out("password.txt");
-
-    if (out)
-    {
-        out << password;
-        out.close();
-        std::cout << "Password has been saved to file." << std::endl;
-        return 0;
-    }
-    else
-    {
-        std::cout << "An error occurred." << std::endl;
-        return 1;
-    }
-}
-*/
