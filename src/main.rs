@@ -3,10 +3,10 @@ mod user_input;
 use rand::Rng;
 use std::fs;
 
-fn generate_password(length: i32) -> String {
+fn generate_password(length: i64) -> String {
     let characters: [char; 91] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\'', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', '{', ']', '}', ';', ':', '"', '@', '#', '~', ',', '<', '.', '>', '/', '?'];
 
-    let mut counter: i32 = 0;
+    let mut counter: i64 = 0;
     let mut password: String = String::from("");
 
     while counter < length {
@@ -23,7 +23,7 @@ fn generate_password(length: i32) -> String {
 }
 
 fn main() {
-    let number_of_characters: i32 = user_input::get_user_input("Enter number of characters: ");
+    let number_of_characters: i64 = user_input::get_user_input("Enter number of characters: ");
     println!("Generating random password...");
     let password: String = generate_password(number_of_characters);
 
