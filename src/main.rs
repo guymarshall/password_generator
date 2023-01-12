@@ -18,6 +18,5 @@ fn main() {
     let password: String = generate_password(number_of_characters);
 
     println!("Saving password to file...");
-    // generate_password(number_of_characters);
     fs::write("password.txt", password).expect("Unable to write file.");
 }
