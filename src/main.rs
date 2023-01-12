@@ -3,6 +3,7 @@ mod user_input;
 use std::fs::File;
 use std::io::prelude::*;
 use std::fs::OpenOptions;
+use rayon::prelude::*;
 use rand::Rng;
 
 fn generate_password(length: i64) {
@@ -22,7 +23,7 @@ fn generate_password(length: i64) {
         let character: char = characters[rand::thread_rng().gen_range(0..characters_length - 1)];
         random_chars.push(character);
         if (i + 1) % save_interval == 0 || (i + 1) == length {
-            let password: String = random_chars.into_iter().collect();
+            let password: String = random_chars.into_par_iter().collect();
             // let mut file: File = File::create("password.txt").expect("Could not create file");
             // file.write_all(password.as_bytes()).expect("Could not write to file");
 
