@@ -8,9 +8,12 @@ fn generate_password(length: i64) {
     let characters: [char; 91] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '\'', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', '{', ']', '}', ';', ':', '"', '@', '#', '~', ',', '<', '.', '>', '/', '?'];
     let characters_length: usize = characters.len();
 
-    let mut percentage_progress: f64 = 0.0;
     let mut random_chars: Vec<char> = Vec::new();
-    let save_interval: i64 = 100_000_000;
+    let mut save_interval: i64 = 100_000_000;
+
+    if length < save_interval {
+        save_interval = length;
+    }
     for i in 0..length {
         let character: char = characters[rand::thread_rng().gen_range(0..characters_length - 1)];
         random_chars.push(character);
@@ -21,7 +24,7 @@ fn generate_password(length: i64) {
             random_chars = Vec::new();
         }
 
-        percentage_progress = (i as f64 / length as f64) * 100.0;
+        let percentage_progress: f64 = (i as f64 / length as f64) * 100.0;
         if percentage_progress % 1.0 == 0.0 {
             println!("{}% complete.", percentage_progress);
         }
