@@ -14,7 +14,7 @@ fn generate_password(length: i64) {
     for i in 0..length {
         let character: char = characters[rand::thread_rng().gen_range(0..characters_length - 1)];
         random_chars.push(character);
-        if (i + 1) % save_interval == 0 {
+        if (i + 1) % save_interval == 0 || (i + 1) == length {
             let password: String = random_chars.into_iter().collect();
             let mut file: File = File::create("password.txt").expect("Could not create file");
             file.write_all(password.as_bytes()).expect("Could not write to file");
