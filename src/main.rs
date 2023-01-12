@@ -26,7 +26,7 @@ fn generate_password(length: i64) {
 
         let percentage_progress: f64 = (i as f64 / length as f64) * 100.0;
         if percentage_progress % 1.0 == 0.0 {
-            println!("{}% complete.", percentage_progress);
+            println!("{}% complete.", percentage_progress + 1.0);
         }
     }
 }
