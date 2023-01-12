@@ -2,6 +2,7 @@ mod user_input;
 
 use std::fs::File;
 use std::io::prelude::*;
+use std::fs::OpenOptions;
 use rand::Rng;
 
 fn generate_password(length: i64) {
@@ -14,13 +15,21 @@ fn generate_password(length: i64) {
     if length < save_interval {
         save_interval = length;
     }
+    // this is needed to create an empty file each time
+    let _: File = File::create("password.txt").expect("Could not create file");
+    let mut file: File = OpenOptions::new().write(true).append(true).open("password.txt").expect("Could not create file");
     for i in 0..length {
         let character: char = characters[rand::thread_rng().gen_range(0..characters_length - 1)];
         random_chars.push(character);
         if (i + 1) % save_interval == 0 || (i + 1) == length {
             let password: String = random_chars.into_iter().collect();
-            let mut file: File = File::create("password.txt").expect("Could not create file");
-            file.write_all(password.as_bytes()).expect("Could not write to file");
+            // let mut file: File = File::create("password.txt").expect("Could not create file");
+            // file.write_all(password.as_bytes()).expect("Could not write to file");
+
+            if let Err(e) = writeln!(file, "{}", password) {
+                eprintln!("Couldn't write to file: {}", e);
+            }
+
             random_chars = Vec::new();
         }
 
