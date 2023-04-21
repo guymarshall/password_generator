@@ -1,3 +1,5 @@
+#![forbid(unsafe_code)]
+
 mod user_input;
 
 use std::fs::File;
