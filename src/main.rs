@@ -42,7 +42,7 @@ fn generate_password(length: i64) {
 }
 
 fn main() {
-    let number_of_characters: i64 = user_input::get_user_input("Enter number of characters: ");
+    let number_of_characters: i64 = user_input::input("Enter number of characters: ");
     println!("Generating random password...");
     generate_password(number_of_characters);
 }
